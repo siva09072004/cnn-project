@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Image Classification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🤖 AI Image Classification</h1>
+    <p class="subtitle">Upload an image and let AI predict the object</p>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button type="submit">🔍 Predict</button>
+    </form>
+
+    {% if image_path %}
+        <div class="result">
+            <img src="{{ image_path }}" alt="Uploaded Image">
+            <h2>Prediction: <span>{{ prediction }}</span></h2>
+            <p>Confidence: <strong>{{ confidence }}%</strong></p>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
